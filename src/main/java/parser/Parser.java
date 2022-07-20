@@ -30,6 +30,13 @@ public class Parser {
     private static int printFourValues(Elements values, int index) {
         int iterationCount = 4;
         if (index == 0) {
+            Element valueLn = values.get(0);
+            boolean isNight = valueLn.text().contains("Ночь");
+            if (isNight) {
+                iterationCount = 5;
+            }
+        }
+        if (index == 0) {
             Element valueLn = values.get(3);
             boolean isMorning = valueLn.text().contains("Утро");
             if (isMorning) {
@@ -45,8 +52,10 @@ public class Parser {
         }
         if (index == 0) {
             Element valueLn = values.get(1);
+            Element valueLn1 = values.get(0);
             boolean isMorning = valueLn.text().contains("Утро");
-            if (isMorning) {
+            boolean isNight = valueLn1.text().contains("Ночь");
+            if (isMorning && !isNight) {
                 iterationCount = 1;
             }
         }
