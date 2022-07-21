@@ -28,33 +28,16 @@ public class Parser {
 
     private static int printFourValues(Elements values, int index) {
         int iterationCount = 4;
+        Element valueLn = values.get(0);
+        String text = valueLn.text();
         if (index == 0) {
-            Element valueLn = values.get(0);
-            boolean isNight = valueLn.text().contains("Ночь");
-            if (isNight) {
+            if (text.contains("Ночь")) {
                 iterationCount = 5;
-            }
-        }
-        if (index == 0) {
-            Element valueLn = values.get(3);
-            boolean isMorning = valueLn.text().contains("Утро");
-            if (isMorning) {
+            } else if (text.contains("День")) {
                 iterationCount = 3;
-            }
-        }
-        if (index == 0) {
-            Element valueLn = values.get(2);
-            boolean isMorning = valueLn.text().contains("Утро");
-            if (isMorning) {
+            } else if (text.contains("Вечер")) {
                 iterationCount = 2;
-            }
-        }
-        if (index == 0) {
-            Element valueLn = values.get(1);
-            Element valueLn1 = values.get(0);
-            boolean isMorning = valueLn.text().contains("Утро");
-            boolean isNight = valueLn1.text().contains("Ночь");
-            if (isMorning && !isNight) {
+            } else if (!text.contains("Ночь") && text.contains("Утро")) {
                 iterationCount = 1;
             }
         }
