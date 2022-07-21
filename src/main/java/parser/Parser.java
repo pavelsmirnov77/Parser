@@ -13,11 +13,10 @@ import java.util.regex.Pattern;
 public class Parser {
     private static Document getPage() throws IOException {
         String url = "https://pogoda.spb.ru/";
-        Document page = Jsoup.parse(new URL(url), 3000);
-        return page;
+        return Jsoup.parse(new URL(url), 3000);
     }
 
-    private static Pattern pattern = Pattern.compile("\\d{2}\\.\\d{2}");
+    private static final Pattern pattern = Pattern.compile("\\d{2}\\.\\d{2}");
 
     private static String getDateFromString(String stringDate) throws Exception {
         Matcher matcher = pattern.matcher(stringDate);
@@ -73,6 +72,7 @@ public class Parser {
     public static void main(String[] args) throws Exception {
         Document page = getPage();
         Element tableWth = page.select("table[class=wt]").first();
+        assert tableWth != null;
         Elements names = tableWth.select("tr[class=wth]");
         Elements values = tableWth.select("tr[valign=top]");
         int index = 0;
