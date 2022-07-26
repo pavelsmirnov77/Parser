@@ -28,16 +28,18 @@ public class Parser {
 
     private static int printFourValues(Elements values, int index) {
         int iterationCount = 4;
-        Element valueLn = values.get(0);
-        String text = valueLn.text();
+        Element valueLnFirst = values.get(0);
+        Element valueLnSecond = values.get(1);
+        String textLnFirst = valueLnFirst.text();
+        String textLnSecond = valueLnSecond.text();
         if (index == 0) {
-            if (text.contains("Ночь")) {
+            if (textLnFirst.contains("Ночь")) {
                 iterationCount = 5;
-            } else if (text.contains("День")) {
+            } else if (textLnFirst.contains("День")) {
                 iterationCount = 3;
-            } else if (text.contains("Вечер")) {
+            } else if (textLnFirst.contains("Вечер")) {
                 iterationCount = 2;
-            } else if (!text.contains("Ночь") && text.contains("Утро")) {
+            } else if (!textLnFirst.contains("Ночь") && textLnSecond.contains("Утро")) {
                 iterationCount = 1;
             }
         }
